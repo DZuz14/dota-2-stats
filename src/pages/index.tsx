@@ -1,76 +1,67 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
+import Table from 'react-bootstrap/Table'
 import Layout from '../components/layout'
-import TableDark from '../components/table-dark'
-
-/**
- * @interface Standing
- */
-interface Standing {
-  node: {
-    name: string
-    logo: string
-    id: string
-  }
-}
 
 /**
  * @function Index
  */
-const Index = ({ data }) => {
-  const teams = data.allStandingsJson.edges
+const Index = ({ data: { allTeamsJson } }) => {
+  // Querying a list of teams produces around 1000 results, far too much. There is no
+  // limit parameter as far as I know after looking at the API docs.
+  const teams = allTeamsJson.edges.filter(
+    ({ node: { rating, name, logo_url } }) =>
+      rating >= 1200 && name.trim().length !== 0 && logo_url !== null
+  )
 
   return (
     <Layout>
-      <h1>Pro Circuit Standings</h1>
+      <h1>Pro Circuit Teams</h1>
 
-      <TableDark>
-        <thead>
-          <tr>
-            <th>Team</th>
-          </tr>
-        </thead>
-
+      <Table borderless variant="dark" striped style={{ marginTop: '25px' }}>
         <tbody>
-          {teams.map(({ node: { name, logo, id } }: Standing, i: number) => (
-            <tr key={name}>
-              <td>
-                <span style={{ marginRight: '15px' }}>{i + 1}.</span>
-
-                <Link
-                  to={`/matches?id=${id}&name=${name}&logo_id=${logo
-                    .slice(30)
-                    .replace('.png', '')}`}
-                  style={{ color: 'white', cursor: 'pointer' }}
-                >
-                  <img
-                    src={`/static/${logo.slice(30)}`}
-                    alt="team logo"
-                    style={{ height: '25px', marginRight: '10px' }}
+          {teams.map(({ node: { rating, name, logo_url, team_id } }, idx) => (
+            <tr key={team_id}>
+              <td style={{ display: 'flex ', alignItems: 'center' }}>
+                <span style={{ marginRight: '20px' }}>{idx + 1}.</span>
+                <Link to={`/teams`} style={{ marginRight: '20px' }}>
+                  <div
+                    style={{
+                      backgroundImage: `url('${logo_url}')`,
+                      backgroundRepeat: 'no-repeat',
+                      backgroundPosition: '50% 50%',
+                      backgroundSize: 'cover',
+                      height: '30px',
+                      width: '30px'
+                    }}
                   />
-                  {name}
+                </Link>
+
+                <Link to={`/teams/${team_id}`}>
+                  <span style={{ color: '#FCFCFC' }}>{name}</span>
                 </Link>
               </td>
             </tr>
           ))}
         </tbody>
-      </TableDark>
+      </Table>
     </Layout>
   )
 }
 
-export default Index
-
 export const query = graphql`
-  query {
-    allStandingsJson {
+  query ProTeams {
+    allTeamsJson {
       edges {
         node {
+          team_id
+          logo_url
           name
-          logo
-          id
+          rating
         }
       }
     }
   }
 `
+
+export default Index
