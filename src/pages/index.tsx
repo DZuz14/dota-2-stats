@@ -1,48 +1,80 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Table from 'react-bootstrap/Table'
-import Layout from '../components/layout'
+import styled from '@emotion/styled'
+import Layout from '../components/Layout'
+
+const TeamLogo = styled.div`
+  background-image: url('${props => props.logoUrl}');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 30px;
+  width: 30px;
+  margin-right: 20px;
+`
+
+const RowCount = styled.span`
+  margin-right: 20px;
+`
+
+const TeamName = styled.span`
+  color: #fcfcfc;
+`
+
+/**
+ * @interface Team
+ */
+interface Team {
+  node: {
+    rating: number
+    name: string
+    logo_url: string
+    team_id: number
+  }
+}
+
+/**
+ * @interface Props
+ */
+interface PageProps {
+  data: {
+    allTeamsJson: {
+      edges: Team[]
+    }
+  }
+}
 
 /**
  * @function Index
  */
-const Index = ({ data: { allTeamsJson } }) => {
-  // Querying a list of teams produces around 1000 results, far too much. There is no
-  // limit parameter as far as I know after looking at the API docs.
-  const teams = allTeamsJson.edges.filter(
-    ({ node: { rating, name, logo_url } }) =>
-      rating >= 1200 && name.trim().length !== 0 && logo_url !== null
-  )
+const Index = ({ data: { allTeamsJson } }: PageProps) => {
+  const teams = allTeamsJson.edges
 
   return (
     <Layout>
       <h1>Pro Circuit Teams</h1>
 
-      <Table borderless variant="dark" striped style={{ marginTop: '25px' }}>
+      <Table borderless variant="dark" striped>
         <tbody>
-          {teams.map(({ node: { rating, name, logo_url, team_id } }, idx) => (
-            <tr key={team_id}>
-              <td style={{ display: 'flex ', alignItems: 'center' }}>
-                <span style={{ marginRight: '20px' }}>{idx + 1}.</span>
-                <Link to={`/teams`} style={{ marginRight: '20px' }}>
-                  <div
-                    style={{
-                      backgroundImage: `url('${logo_url}')`,
-                      backgroundRepeat: 'no-repeat',
-                      backgroundPosition: '50% 50%',
-                      backgroundSize: 'cover',
-                      height: '30px',
-                      width: '30px'
-                    }}
-                  />
-                </Link>
+          {teams.map(
+            ({ node: { name, logo_url, team_id } }: Team, idx: number) => (
+              <tr key={team_id}>
+                <td className="flex flex-align-center">
+                  <RowCount>{idx + 1}.</RowCount>
 
-                <Link to={`/teams/${team_id}`}>
-                  <span style={{ color: '#FCFCFC' }}>{name}</span>
-                </Link>
-              </td>
-            </tr>
-          ))}
+                  <Link to={`/teams/${team_id}`}>
+                    <TeamLogo logoUrl={logo_url} />
+                  </Link>
+
+                  <Link to={`/teams/${team_id}`}>
+                    <TeamName>{name}</TeamName>
+                  </Link>
+                </td>
+              </tr>
+            )
+          )}
         </tbody>
       </Table>
     </Layout>
@@ -51,7 +83,11 @@ const Index = ({ data: { allTeamsJson } }) => {
 
 export const query = graphql`
   query ProTeams {
-    allTeamsJson {
+    allTeamsJson(
+      filter: { logo_url: { ne: null }, rating: { gt: 1200 }, name: { ne: "" } }
+      limit: 50
+      sort: { fields: [rating], order: DESC }
+    ) {
       edges {
         node {
           team_id

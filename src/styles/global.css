@@ -1,0 +1,17 @@
+body {
+  background-color: #02111b;
+  margin: 40px 0;
+}
+
+h1 {
+  font-size: 1.75rem;
+  color: #fcfcfc;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-align-center {
+  align-items: center;
+}

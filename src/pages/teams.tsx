@@ -1,6 +1,9 @@
 import React from 'react'
+import { Router } from '@reach/router'
 import { Link, graphql } from 'gatsby'
-import Layout from '../components/layout'
+
+import Layout from '../components/Layout'
+import TeamHome from '../components/TeamHome'
 
 /**
  * @function Teams
@@ -9,7 +12,9 @@ import Layout from '../components/layout'
 const Teams = () => {
   return (
     <Layout>
-      <h1>A Team Name Here</h1>
+      <Router>
+        <TeamHome path="teams/:teamId" />
+      </Router>
     </Layout>
   )
 }

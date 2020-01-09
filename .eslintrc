@@ -23,6 +23,7 @@
     "import/prefer-default-export": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "import/extensions": ["error", "never"],
+    "@typescript-eslint/camelcase": ["error", { "properties": "never" }],
     "react/no-unescaped-entities": [
       "error",
       {

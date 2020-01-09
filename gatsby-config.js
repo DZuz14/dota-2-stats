@@ -17,6 +17,7 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-typescript`,
     `gatsby-plugin-tslint`,
+    `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/matches/*`] }
