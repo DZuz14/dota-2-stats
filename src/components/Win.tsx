@@ -11,10 +11,6 @@ const WinStyled = styled.span`
   border-radius: 0.25rem;
 `
 
-const Win = () => (
-  <>
-    <WinStyled>W</WinStyled>
-  </>
-)
+const Win = () => <WinStyled>W</WinStyled>
 
 export default Win

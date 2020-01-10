@@ -1,54 +1,22 @@
 import React from 'react'
-import TableDark from './table-dark'
-import LogoDisplay from './logo-display'
+import styled from '@emotion/styled'
+import TableLight from './TableLight'
+import LogoBackground from './LogoBackground'
 
-/**
- * @function TeamTable
- */
-const TeamTable = ({ players }) => (
-  <TableDark style={{ marginTop: '4px' }}>
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>Kills</th>
-        <th>Deaths</th>
-        <th>Assists</th>
-        <th>Last Hits</th>
-        <th>Denies</th>
-        <th>Damage</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {players.map(
-        ({ name, kills, deaths, assists, last_hits, denies, hero_damage }) => (
-          <tr>
-            <td>{name}</td>
-            <td>{kills}</td>
-            <td>{deaths}</td>
-            <td>{assists}</td>
-            <td>{last_hits}</td>
-            <td>{denies}</td>
-            <td>{hero_damage}</td>
-          </tr>
-        )
-      )}
-    </tbody>
-  </TableDark>
-)
+const columns: string[] = [
+  'Player',
+  'Kills',
+  'Deaths',
+  'Assists',
+  'Last Hits',
+  'Denies',
+  'Damage'
+]
 
 /**
  * @function Match
  */
-const Match = ({ location }) => {
-  const { data, loading } = fetchData(
-    `/matches/${location.pathname.replace(/[a-z/]/g, '')}`
-  )
-
-  if (loading) {
-    return null
-  }
-
+const Match = () => {
   const radiant = data.radiant_team
   const radiantPlayers = data.players.slice(0, 5)
 
@@ -65,53 +33,71 @@ const Match = ({ location }) => {
           marginBottom: '15px'
         }}
       >
-        <LogoDisplay logo={radiant.logo_url} height={35} width={35}>
-          <h1>{radiant.name}</h1>
-        </LogoDisplay>
+        <h1>{radiant.name}</h1>
+        <LogoBackground logoUrl={radiant.logo_url} />
 
-        <span
-          style={{
-            margin: '0 25px',
-            fontWeight: 'bold',
-            fontSize: '1.5rem'
-          }}
-        >
-          vs.
-        </span>
+        <Versus>vs.</Versus>
 
-        <LogoDisplay logo={dire.logo_url} height={35} width={35}>
-          <h1>{dire.name}</h1>
-        </LogoDisplay>
+        <h1>{dire.name}</h1>
+        <LogoBackground logoUrl={dire.logo_url} />
       </div>
 
       <hr />
 
-      {/* PLayers Tables */}
-      <>
-        <div style={{ marginTop: '30px' }}>
-          <h2 style={{ color: '#66d3d3' }}>{radiant.name}</h2>
-          <TeamTable players={radiantPlayers} />
-        </div>
+      <h2 style={{ color: '#66d3d3' }}>{radiant.name}</h2>
+      <TeamStats players={radiantPlayers} />
 
-        <div style={{ marginTop: '30px' }}>
-          <h2 style={{ color: '#66d3d3' }}>{dire.name}</h2>
-          <TeamTable players={direPlayers} />
-        </div>
-
-        {/* <Alert
-          variant="success"
-          size="sm"
-          style={{
-            display: 'inline',
-            padding: '0.2rem',
-            float: 'right'
-          }}
-        >
-          W
-        </Alert> */}
-      </>
+      <h2 style={{ color: '#66d3d3' }}>{dire.name}</h2>
+      <TeamStats players={direPlayers} />
     </>
   )
 }
+
+/**
+ * @function TeamStats
+ */
+const TeamStats = ({ players }) => {
+  return (
+    <TableLight style={{ marginTop: '4px' }}>
+      <thead>
+        <tr>
+          {columns.map(column => (
+            <td key={column}>{column}</td>
+          ))}
+        </tr>
+      </thead>
+
+      <tbody>
+        {players.map(
+          ({
+            name,
+            kills,
+            deaths,
+            assists,
+            last_hits,
+            denies,
+            hero_damage
+          }) => (
+            <tr>
+              <td>{name}</td>
+              <td>{kills}</td>
+              <td>{deaths}</td>
+              <td>{assists}</td>
+              <td>{last_hits}</td>
+              <td>{denies}</td>
+              <td>{hero_damage}</td>
+            </tr>
+          )
+        )}
+      </tbody>
+    </TableLight>
+  )
+}
+
+const Versus = styled.span`
+margin: '0 25px',
+fontWeight: 'bold',
+fontSize: '1.5rem'
+`
 
 export default Match

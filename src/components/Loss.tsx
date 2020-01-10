@@ -11,10 +11,6 @@ const LossStyled = styled.span`
   border-radius: 0.25rem;
 `
 
-const Loss = () => (
-  <>
-    <LossStyled>L</LossStyled>
-  </>
-)
+const Loss = () => <LossStyled>L</LossStyled>
 
 export default Loss

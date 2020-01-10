@@ -1,23 +1,9 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import TableLight from './TableLight'
+import LogoBackground from './LogoBackground'
 
-const TeamLogo = styled.div`
-background-image: url('${props => props.logoUrl}');
-background-repeat: no-repeat;
-background-position: 50% 50%;
-background-size: cover;
-height: 30px;
-width: 30px;
-margin-right: 15px;
-`
-
-const RowCount = styled.span`
-  margin-right: 20px;
-`
-
-const TeamName = styled.span``
-
-const TeamList = () => {
+const Teams = () => {
   return (
     <TableLight>
       <thead>
@@ -37,12 +23,10 @@ const TeamList = () => {
                 <RowCount>{i + 1}.</RowCount>
 
                 <Link to={`/teams/${team_id}`}>
-                  <TeamLogo logoUrl={logo_url} />
+                  <LogoBackground logoUrl={logo_url} />
                 </Link>
 
-                <Link to={`/teams/${team_id}`}>
-                  <TeamName>{name}</TeamName>
-                </Link>
+                <Link to={`/teams/${team_id}`}>{name}</Link>
               </td>
             </tr>
           )
@@ -52,4 +36,8 @@ const TeamList = () => {
   )
 }
 
-export default TeamList
+const RowCount = styled.span`
+  margin-right: 20px;
+`
+
+export default Teams

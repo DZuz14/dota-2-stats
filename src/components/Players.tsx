@@ -1,8 +1,7 @@
 import React from 'react'
 import TableLight from './TableLight'
-import styled from '@emotion/styled'
 
-const PlayersList = ({ players }) => (
+const Players = ({ players }) => (
   <TableLight>
     <thead>
       <tr>
@@ -24,4 +23,4 @@ const PlayersList = ({ players }) => (
   </TableLight>
 )
 
-export default PlayersList
+export default Players

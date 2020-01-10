@@ -1,33 +1,45 @@
-# Dota 2 Team Standings
+# Dota 2 Pro Circuit Demo
 
-This demo "app" is designed to display the current team standings for the e-sports game Dota 2. From the standings page, the user should be able to:
+- View a list of professional teams.
+- View a teams roster and recent matches
+- View the details of an individual match
+- View an individual players profile
 
-- View a list of an individual teams matches.
-- View player stats for a particular match.
+As this is a work in progress, I am using mock data from the [OpenDota API](https://docs.opendota.com/), instead of making live requests to the API.
 
-It fetches it's data from the [OpenDota API](https://docs.opendota.com/). Interestingly enough, I couldn't find a "limit" parameter when requesting a list of matches for a team. Therefore, give a teams matches list a second or two to load. (I haven't added loading indicators, which I mention in the commentary section).
+## Tech
+
+- Gatsby.js
+- React
+- GraphQL
+- TypeScript
+- Styled Components
 
 ## Design
 
-In order to be able to put as much code down as possible, I used a similar set of styling from a real Dota 2 stats website, [Dotabuff](https://www.dotabuff.com/).
+TBD
 
-## Tech Overview
+## CSS
 
-- Gatsby.js
-- React 16
-- TypeScript
-- Redux/Redux Saga
-- Emotion Styled Components
+TBD
 
-This demo took me a little bit longer than expected, so I decided to not use Redux and Emotion for sake of speed.
+## Pages
 
-The CSS styling is very simple, and contains minimal styling rules. The styles I put in myself are located in the `components/Layout` file, or done inline inside the React components themselves. Since I am utilizing the React Bootstrap library, any other styling seen can most likely be attributed to that.
+- Index
 
-## Commentary
+...yolo..
 
-I wanted to point out a few things that I would like to optimize/change about the current iteration of this demo:
+- Matches
+- Teams
 
-- Loading indicators & some basic error handling.
-- Server render versus doing initial data fetches on the client.
-- It would be useful to jump back through and clean up, add, or change any TypeScript related items.
-- Devise a more robust routing strategy that removes the necessity for querystring parameters. Using URL params instead might be a good option.
+## Components
+
+- Teams
+- Team
+- Players
+- Player
+- Matches
+- Match
+- TableLight
+- Win
+- Loss
