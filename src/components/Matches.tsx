@@ -6,7 +6,9 @@ import Win from './Win'
 import Loss from './Loss'
 import LogoBackground from './LogoBackground'
 
-const Matches = ({ matches }) => (
+import { MatchSummary } from '../types'
+
+const Matches = ({ matches }: { matches: { node: MatchSummary }[] }) => (
   <TableLight>
     <thead>
       <tr>
@@ -28,15 +30,15 @@ const Matches = ({ matches }) => (
             radiant_win,
             radiant
           }
+        }: {
+          node: MatchSummary
         }) => {
           const date: Date = new Date(start_time * 1000)
 
           return (
             <tr key={match_id}>
               <td>
-                <Link to={`matches/${match_id}`} style={{ color: '#0e4d92' }}>
-                  {match_id}
-                </Link>
+                <Link to={`matches/${match_id}`}>{match_id}</Link>
               </td>
 
               <td>{`${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`}</td>

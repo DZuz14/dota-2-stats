@@ -28,20 +28,20 @@ interface PageProps {
 
 const Teams = ({
   data: { allTeamsJson, allPlayersJson, allMatchesJson }
-}: PageProps) => {
-  return (
-    <Layout>
-      <Router>
-        <Team
-          path="teams/:teamId"
-          team={allTeamsJson.edges}
-          players={allPlayersJson.edges}
-          matches={allMatchesJson.edges}
-        />
-      </Router>
-    </Layout>
-  )
-}
+}: PageProps) => (
+  <Layout>
+    <Router>
+      <Team
+        path="teams/:teamId"
+        team={allTeamsJson.edges}
+        players={allPlayersJson.edges}
+        matches={allMatchesJson.edges}
+      />
+    </Router>
+  </Layout>
+)
+
+export default Teams
 
 export const query = graphql`
   query {
@@ -89,5 +89,3 @@ export const query = graphql`
     }
   }
 `
-
-export default Teams

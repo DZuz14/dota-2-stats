@@ -1,3 +1,15 @@
+export interface Match {
+  radiant_team: {
+    name: string
+    logo_url: string
+  }
+  dire_team: {
+    name: string
+    logo_url: string
+  }
+  players: PlayerStats
+}
+
 export interface MatchSummary {
   match_id: number
   radiant_win: boolean
@@ -6,6 +18,16 @@ export interface MatchSummary {
   opposing_team_id: number
   opposing_team_name: string
   opposing_team_logo: string
+}
+
+export interface PlayerStats {
+  name: string
+  kills: number
+  deaths: number
+  assists: number
+  last_hits: number
+  denies: number
+  hero_damage: number
 }
 
 export interface PlayerSummary {

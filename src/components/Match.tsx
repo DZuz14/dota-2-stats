@@ -3,6 +3,10 @@ import React from 'react'
 import styled from '@emotion/styled'
 import TableLight from './TableLight'
 import LogoBackground from './LogoBackground'
+import Win from './Win'
+import Loss from './Loss'
+
+import { Match as MatchInterface, PlayerStats } from '../types'
 
 const columns: string[] = [
   'Player',
@@ -14,53 +18,26 @@ const columns: string[] = [
   'Damage'
 ]
 
-const Match = ({ match }) => {
-  const [matchDetail] = match
+const MatchHeading = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  background: #242b31;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 18.5px;
+`
 
-  const {
-    node: { radiant_team, dire_team, players }
-  } = matchDetail
+const Versus = styled.span`
+  margin: '0 25px',
+  fontWeight: 'bold',
+  fontSize: '1.5rem'
+`
 
-  const radiant = radiant_team
-  const radiantPlayers = players.slice(0, 5)
-
-  const dire = dire_team
-  const direPlayers = players.slice(5, 10)
-
+const TeamStats = ({ players }: { players: PlayerStats[] }) => {
   return (
-    <>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginBottom: '30px',
-          background: '#242b31',
-          color: 'white',
-          padding: '.75rem 1.5rem'
-        }}
-      >
-        <h1>{radiant.name}</h1>
-        <LogoBackground logoUrl={radiant.logo_url} />
-
-        <Versus>vs.</Versus>
-
-        <h1>{dire.name}</h1>
-        <LogoBackground logoUrl={dire.logo_url} />
-      </div>
-
-      <h2>{radiant.name}</h2>
-      <TeamStats players={radiantPlayers} />
-
-      <h2 style={{ marginTop: '25px' }}>{dire.name}</h2>
-      <TeamStats players={direPlayers} />
-    </>
-  )
-}
-
-const TeamStats = ({ players }) => {
-  return (
-    <TableLight style={{ marginTop: '4px' }}>
+    <TableLight>
       <thead>
         <tr>
           {columns.map(column => (
@@ -96,10 +73,49 @@ const TeamStats = ({ players }) => {
   )
 }
 
-const Versus = styled.span`
-margin: '0 25px',
-fontWeight: 'bold',
-fontSize: '1.5rem'
-`
+const Match = ({ match }: { match: { node: MatchInterface[] } }) => {
+  const [matchDetail] = match
+
+  const {
+    node: { radiant_team, dire_team, players }
+  } = matchDetail
+
+  const radiant = radiant_team
+  const radiantPlayers = players.slice(0, 5)
+
+  const dire = dire_team
+  const direPlayers = players.slice(5, 10)
+
+  return (
+    <>
+      <MatchHeading>
+        <div className="flex align-center">
+          <LogoBackground logoUrl={radiant.logo_url} />
+          <span>{radiant.name}</span>
+        </div>
+
+        <Versus>vs.</Versus>
+
+        <div className="flex align-center">
+          <LogoBackground logoUrl={dire.logo_url} />
+          <span>{dire.name}</span>
+        </div>
+      </MatchHeading>
+
+      <div style={{ marginBottom: '10px' }}>
+        <span style={{ marginRight: '7.5px' }}>{radiant.name}</span>
+        <Win />
+      </div>
+
+      <TeamStats players={radiantPlayers} />
+
+      <div style={{ margin: '25px 0 10px ' }}>
+        <span style={{ marginRight: '7.5px' }}>{dire.name}</span>
+        <Loss />
+      </div>
+      <TeamStats players={direPlayers} />
+    </>
+  )
+}
 
 export default Match

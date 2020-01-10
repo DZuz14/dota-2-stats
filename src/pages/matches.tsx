@@ -6,7 +6,17 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Match from '../components/Match'
 
-const Matches = ({ data: { allMatchJson } }) => {
+import { MatchSummary } from '../types'
+
+interface PageProps {
+  data: {
+    allMatchJson: {
+      edges: { node: MatchSummary }[]
+    }
+  }
+}
+
+const Matches = ({ data: { allMatchJson } }: PageProps) => {
   return (
     <Layout>
       <Router>
@@ -15,6 +25,8 @@ const Matches = ({ data: { allMatchJson } }) => {
     </Layout>
   )
 }
+
+export default Matches
 
 export const query = graphql`
   query Match {
@@ -43,5 +55,3 @@ export const query = graphql`
     }
   }
 `
-
-export default Matches

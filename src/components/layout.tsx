@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 import '../styles/bootstrap.css'
 import '../styles/global.css'
 
-const Layout = ({ children }: { children: any }) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <header>
