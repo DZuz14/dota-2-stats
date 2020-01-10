@@ -19,8 +19,9 @@ a {
   color: #232b31;
 }
 
-a:hover {
-  text-decoration: none;
+table {
+  font-size: 15px;
+  margin-top: 1px;
 }
 
 table thead {
@@ -28,8 +29,16 @@ table thead {
   color: white;
 }
 
+.table td {
+  vertical-align: middle;
+}
+
 table td:last-child {
   text-align: center;
+}
+
+table td:first-child {
+  text-align: unset;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {

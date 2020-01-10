@@ -2,14 +2,14 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import TeamList from '../components/TeamList'
+import Teams from '../components/Teams'
 
-import { TeamListItem } from '../types'
+import { TeamSummary } from '../types'
 
 interface PageProps {
   data: {
     allTeamsJson: {
-      edges: { node: TeamListItem }[]
+      edges: { node: TeamSummary }[]
     }
   }
 }
@@ -17,7 +17,7 @@ interface PageProps {
 const Index = ({ data: { allTeamsJson } }: PageProps) => {
   return (
     <Layout>
-      <TeamList />
+      <Teams teams={allTeamsJson.edges} />
     </Layout>
   )
 }

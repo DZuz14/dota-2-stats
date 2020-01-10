@@ -4,7 +4,7 @@ import React from 'react'
 import { Router } from '@reach/router'
 import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
-import TeamHome from '../components/TeamHome'
+import Team from '../components/Team'
 
 import { MatchSummary, PlayerSummary, TeamSummary } from '../types'
 
@@ -24,21 +24,15 @@ interface PageProps {
       edges: { node: TeamSummary[] }
     }
   }
-  location: Location
 }
 
 const Teams = ({
-  data: { allTeamsJson, allPlayersJson, allMatchesJson },
-  location
+  data: { allTeamsJson, allPlayersJson, allMatchesJson }
 }: PageProps) => {
-  if (location.pathname === '/teams') {
-    window.location = '/'
-  }
-
   return (
     <Layout>
       <Router>
-        <TeamHome
+        <Team
           path="teams/:teamId"
           team={allTeamsJson.edges}
           players={allPlayersJson.edges}

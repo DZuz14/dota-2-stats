@@ -4,6 +4,7 @@ import { Link } from 'gatsby'
 import TableLight from './TableLight'
 import Win from './Win'
 import Loss from './Loss'
+import LogoBackground from './LogoBackground'
 
 const Matches = ({ matches }) => (
   <TableLight>
@@ -31,19 +32,17 @@ const Matches = ({ matches }) => (
           const date: Date = new Date(start_time * 1000)
 
           return (
-            <tr>
+            <tr key={match_id}>
               <td>
-                <Link to={`matches/${match_id}`}>{match_id}</Link>
+                <Link to={`matches/${match_id}`} style={{ color: '#0e4d92' }}>
+                  {match_id}
+                </Link>
               </td>
 
               <td>{`${date.getMonth()}/${date.getDate()}/${date.getFullYear()}`}</td>
 
-              <td>
-                <img
-                  height="25"
-                  src={opposing_team_logo}
-                  alt={opposing_team_name}
-                />
+              <td style={{ display: 'flex', alignItems: 'center' }}>
+                <LogoBackground logoUrl={opposing_team_logo} />
                 <span>{opposing_team_name}</span>
               </td>
 

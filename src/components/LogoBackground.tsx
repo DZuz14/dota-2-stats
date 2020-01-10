@@ -9,6 +9,7 @@ background-size: cover;
 height: 30px;
 width: 30px;
 margin-right: 15px;
+display: inline-block;
 `
 
 const LogoBackground = ({ logoUrl }) => <LogoStyled logoUrl={logoUrl} />

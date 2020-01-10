@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
 import styled from '@emotion/styled'
 import TableLight from './TableLight'
@@ -13,15 +14,18 @@ const columns: string[] = [
   'Damage'
 ]
 
-/**
- * @function Match
- */
-const Match = () => {
-  const radiant = data.radiant_team
-  const radiantPlayers = data.players.slice(0, 5)
+const Match = ({ match }) => {
+  const [matchDetail] = match
 
-  const dire = data.dire_team
-  const direPlayers = data.players.slice(5, 10)
+  const {
+    node: { radiant_team, dire_team, players }
+  } = matchDetail
+
+  const radiant = radiant_team
+  const radiantPlayers = players.slice(0, 5)
+
+  const dire = dire_team
+  const direPlayers = players.slice(5, 10)
 
   return (
     <>
@@ -30,7 +34,10 @@ const Match = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          marginBottom: '15px'
+          marginBottom: '30px',
+          background: '#242b31',
+          color: 'white',
+          padding: '.75rem 1.5rem'
         }}
       >
         <h1>{radiant.name}</h1>
@@ -42,20 +49,15 @@ const Match = () => {
         <LogoBackground logoUrl={dire.logo_url} />
       </div>
 
-      <hr />
-
-      <h2 style={{ color: '#66d3d3' }}>{radiant.name}</h2>
+      <h2>{radiant.name}</h2>
       <TeamStats players={radiantPlayers} />
 
-      <h2 style={{ color: '#66d3d3' }}>{dire.name}</h2>
+      <h2 style={{ marginTop: '25px' }}>{dire.name}</h2>
       <TeamStats players={direPlayers} />
     </>
   )
 }
 
-/**
- * @function TeamStats
- */
 const TeamStats = ({ players }) => {
   return (
     <TableLight style={{ marginTop: '4px' }}>
@@ -78,7 +80,7 @@ const TeamStats = ({ players }) => {
             denies,
             hero_damage
           }) => (
-            <tr>
+            <tr key={name}>
               <td>{name}</td>
               <td>{kills}</td>
               <td>{deaths}</td>

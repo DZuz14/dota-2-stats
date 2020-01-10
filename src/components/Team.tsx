@@ -12,7 +12,7 @@ const TeamHome = ({ team, players, matches }) => {
 
   return (
     <>
-      <div>
+      <div className="flex align-center" style={{ marginBottom: '35px' }}>
         <img height="40" src={logo_url} alt={name} />
         <TeamName>{name}</TeamName>
       </div>
@@ -28,7 +28,7 @@ const TeamHome = ({ team, players, matches }) => {
 
 const TeamName = styled.h1`
   margin-left: 15px;
-  margin-bottom: 2.5px;
+  margin-bottom: 0;
   display: inline;
 `
 

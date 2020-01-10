@@ -1,9 +1,17 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import TableLight from './TableLight'
 import LogoBackground from './LogoBackground'
 
-const Teams = () => {
+import { TeamSummary } from '../types'
+
+interface Props {
+  teams: { node: TeamSummary }[]
+}
+
+const Teams = ({ teams }: Props) => {
   return (
     <TableLight>
       <thead>
@@ -13,13 +21,13 @@ const Teams = () => {
       </thead>
 
       <tbody>
-        {allTeamsJson.edges.map(
+        {teams.map(
           (
-            { node: { name, logo_url, team_id } }: { node: Team },
+            { node: { name, logo_url, team_id } }: { node: TeamSummary },
             i: number
           ) => (
             <tr key={team_id}>
-              <td className="flex flex-align-center">
+              <td className="flex align-center">
                 <RowCount>{i + 1}.</RowCount>
 
                 <Link to={`/teams/${team_id}`}>

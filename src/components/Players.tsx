@@ -13,7 +13,7 @@ const Players = ({ players }) => (
 
     <tbody>
       {players.map(({ node: { name, wins, games_played } }) => (
-        <tr>
+        <tr key={name}>
           <td>{name}</td>
           <td>{wins}</td>
           <td>{games_played}</td>
