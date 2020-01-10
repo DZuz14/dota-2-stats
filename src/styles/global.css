@@ -4,7 +4,12 @@ body {
 }
 
 h1 {
-  font-size: 1.75rem;
+  font-size: 1.8rem;
+  color: #fcfcfc;
+}
+
+h2 {
+  font-size: 1.25rem;
   color: #fcfcfc;
 }
 
@@ -14,4 +19,12 @@ h1 {
 
 .flex-align-center {
   align-items: center;
+}
+
+table {
+  margin-top: 15px;
+}
+
+table:not(:last-child) {
+  margin-bottom: 40px;
 }

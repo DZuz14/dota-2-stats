@@ -59,10 +59,10 @@ const Index = ({ data: { allTeamsJson } }: PageProps) => {
       <Table borderless variant="dark" striped>
         <tbody>
           {teams.map(
-            ({ node: { name, logo_url, team_id } }: Team, idx: number) => (
+            ({ node: { name, logo_url, team_id } }: Team, i: number) => (
               <tr key={team_id}>
                 <td className="flex flex-align-center">
-                  <RowCount>{idx + 1}.</RowCount>
+                  <RowCount>{i + 1}.</RowCount>
 
                   <Link to={`/teams/${team_id}`}>
                     <TeamLogo logoUrl={logo_url} />
