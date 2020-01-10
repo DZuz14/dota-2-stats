@@ -20,7 +20,7 @@ module.exports = {
     `gatsby-plugin-emotion`,
     {
       resolve: `gatsby-plugin-create-client-paths`,
-      options: { prefixes: [`/matches/*`] }
+      options: { prefixes: [`/teams/*`, `/matches/*`] }
     }
   ]
 }

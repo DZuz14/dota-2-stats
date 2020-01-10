@@ -1,63 +1,50 @@
+/* eslint-disable @typescript-eslint/camelcase */
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
+import { Router } from '@reach/router'
 import { graphql } from 'gatsby'
-
 import Layout from '../components/Layout'
+import TeamHome from '../components/TeamHome'
 
-/**
- * @interface MatchSummary
- */
-interface MatchSummary {
-  node: {
-    match_id: number
-    radiant_win: boolean
-    radiant: boolean
-    start_time: number
-    opposing_team_id: number
-    opposing_team_name: string
-    opposing_team_logo: string
-  }
-}
+import { MatchSummary, PlayerSummary, TeamSummary } from '../types'
 
-/**
- * @interface PageProps
- */
 interface PageProps {
   data: {
-    allMatchesJson: MatchSummary[]
-    allPlayersJson: { name: string }
+    allMatchesJson: {
+      edges: {
+        node: MatchSummary[]
+      }
+    }
+    allPlayersJson: {
+      edges: {
+        node: PlayerSummary[]
+      }
+    }
+    allTeamsJson: {
+      edges: { node: TeamSummary[] }
+    }
   }
+  location: Location
 }
 
-/**
- * @function Teams
- */
-
 const Teams = ({
-  data: { allMatchesJson, allPlayersJson, allTeamsJson }
+  data: { allTeamsJson, allPlayersJson, allMatchesJson },
+  location
 }: PageProps) => {
-  const [team] = allTeamsJson.edges
-  const matches = allMatchesJson.edges
-  const players = allPlayersJson.edges
+  if (location.pathname === '/teams') {
+    window.location = '/'
+  }
 
   return (
     <Layout>
-      <div
-        className="flex flex-align-center"
-        style={{
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-          marginBottom: '30px'
-        }}
-      >
-        <div>
-          <img height="60" src={team.node.logo_url} />
-          <h1 style={{ marginTop: '15px' }}>{team.node.name}</h1>
-        </div>
-      </div>
-
-      <h2>Players</h2>
-      <h2>Matches</h2>
+      <Router>
+        <TeamHome
+          path="teams/:teamId"
+          team={allTeamsJson.edges}
+          players={allPlayersJson.edges}
+          matches={allMatchesJson.edges}
+        />
+      </Router>
     </Layout>
   )
 }
