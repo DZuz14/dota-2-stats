@@ -7,9 +7,9 @@ This basic demo is a work in progress, but hopefully showcases my understanding 
 - View a list of teams on the pro circuit
 - View a individual teams roster and recent matches
 - View the details of an individual match
-- View an individual players profile (Coming soon)
+- View an individual players profile (*Coming soon*)
 
-I am using mock data from the [OpenDota API](https://docs.opendota.com/), instead of making live requests to the free API. Therefore, you should expect to see the same mock data once you have clicked into a team(The teams players and match data will most likely not reflect the actual team you selected). In the future I will hook up live requests and integrate it into Redux/Redux Saga.
+I am using mock data from the [OpenDota API](https://docs.opendota.com/), instead of making live requests to the free API. Therefore, you should expect to see the same mock data once you have clicked into a team(*The teams players and match data will most likely not reflect the actual team you selected*). In the future I will hook up live requests and integrate it into Redux/Redux Saga.
 
 ## Tech
 
