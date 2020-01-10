@@ -1,6 +1,6 @@
 # Dota 2 Pro Circuit Demo
 
-[View Demo]()
+[View Demo](https://dzuz14.github.io/)
 
 This basic demo is a work in progress, but hopefully showcases my understanding of React, GraphQL, TypeScript, & JavaScript in general. You should be able to do the following from the index page:
 
