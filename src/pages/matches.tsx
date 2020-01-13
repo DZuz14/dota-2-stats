@@ -42,6 +42,7 @@ export const query = graphql`
             logo_url
           }
           players {
+            account_id
             name
             kills
             deaths

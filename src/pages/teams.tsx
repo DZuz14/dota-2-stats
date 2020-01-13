@@ -11,17 +11,13 @@ import { MatchSummary, PlayerSummary, TeamSummary } from '../types'
 interface PageProps {
   data: {
     allMatchesJson: {
-      edges: {
-        node: MatchSummary[]
-      }
+      edges: { node: MatchSummary }[]
     }
     allPlayersJson: {
-      edges: {
-        node: PlayerSummary[]
-      }
+      edges: { node: PlayerSummary }[]
     }
     allTeamsJson: {
-      edges: { node: TeamSummary[] }
+      edges: { node: TeamSummary }[]
     }
   }
 }
@@ -73,6 +69,7 @@ export const query = graphql`
           name
           wins
           games_played
+          account_id
         }
       }
     }

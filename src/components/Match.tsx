@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
+import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import TableLight from './TableLight'
 import LogoBackground from './LogoBackground'
@@ -49,6 +50,7 @@ const TeamStats = ({ players }: { players: PlayerStats[] }) => {
       <tbody>
         {players.map(
           ({
+            account_id,
             name,
             kills,
             deaths,
@@ -58,7 +60,9 @@ const TeamStats = ({ players }: { players: PlayerStats[] }) => {
             hero_damage
           }) => (
             <tr key={name}>
-              <td>{name}</td>
+              <td>
+                <Link to={`/players/${account_id}`}>{name}</Link>
+              </td>
               <td>{kills}</td>
               <td>{deaths}</td>
               <td>{assists}</td>

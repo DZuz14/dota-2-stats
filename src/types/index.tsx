@@ -20,7 +20,18 @@ export interface MatchSummary {
   opposing_team_logo: string
 }
 
+export interface PlayerProfile {
+  account_id: number
+  name: string
+  steamid: string
+  avatar: string
+  avatarmedium?: string
+  avatarfull?: string
+  profileurl: string
+}
+
 export interface PlayerStats {
+  account_id: number
   name: string
   kills: number
   deaths: number

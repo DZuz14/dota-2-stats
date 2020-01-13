@@ -1,7 +1,14 @@
+/* eslint-disable @typescript-eslint/camelcase */
 import React from 'react'
+import { Link } from 'gatsby'
 import TableLight from './TableLight'
+import { PlayerSummary } from '../types'
 
-const Players = ({ players }) => (
+interface Props {
+  players: { node: PlayerSummary }[]
+}
+
+const Players = ({ players }: Props) => (
   <TableLight>
     <thead>
       <tr>
@@ -12,9 +19,11 @@ const Players = ({ players }) => (
     </thead>
 
     <tbody>
-      {players.map(({ node: { name, wins, games_played } }) => (
+      {players.map(({ node: { name, wins, games_played, account_id } }) => (
         <tr key={name}>
-          <td>{name}</td>
+          <td>
+            <Link to={`/players/${account_id}`}>{name}</Link>
+          </td>
           <td>{wins}</td>
           <td>{games_played}</td>
         </tr>

@@ -7,6 +7,10 @@ import LogoBackground from './LogoBackground'
 
 import { TeamSummary } from '../types'
 
+const RowCount = styled.span`
+  margin-right: 20px;
+`
+
 interface Props {
   teams: { node: TeamSummary }[]
 }
@@ -34,7 +38,9 @@ const Teams = ({ teams }: Props) => {
                   <LogoBackground logoUrl={logo_url} />
                 </Link>
 
-                <Link to={`/teams/${team_id}`}>{name}</Link>
+                <Link to={`/teams/${team_id}`} className="no-decoration">
+                  {name}
+                </Link>
               </td>
             </tr>
           )
@@ -43,9 +49,5 @@ const Teams = ({ teams }: Props) => {
     </TableLight>
   )
 }
-
-const RowCount = styled.span`
-  margin-right: 20px;
-`
 
 export default Teams

@@ -4,6 +4,25 @@ import styled from '@emotion/styled'
 import Players from './Players'
 import Matches from './Matches'
 
+const TeamName = styled.h1`
+  margin-left: 15px;
+  margin-bottom: 0;
+  display: inline;
+`
+
+const MatchesHeading = styled.h2`
+  margin-bottom: 10px;
+  margin-top: 25px;
+`
+
+const PlayersHeading = styled.h2`
+  margin-bottom: 10px;
+`
+
+/**
+ * @todo
+ *  - Add TS interfaces
+ */
 const TeamHome = ({ team, players, matches }) => {
   const [_team] = team
   const {
@@ -25,20 +44,5 @@ const TeamHome = ({ team, players, matches }) => {
     </>
   )
 }
-
-const TeamName = styled.h1`
-  margin-left: 15px;
-  margin-bottom: 0;
-  display: inline;
-`
-
-const MatchesHeading = styled.h2`
-  margin-bottom: 10px;
-  margin-top: 25px;
-`
-
-const PlayersHeading = styled.h2`
-  margin-bottom: 10px;
-`
 
 export default TeamHome

@@ -24,6 +24,14 @@ table {
   margin-top: 1px;
 }
 
+table a {
+  text-decoration: underline;
+}
+
+.no-decoration {
+  text-decoration: none !important;
+}
+
 table thead {
   background: #242b31;
   color: white;
