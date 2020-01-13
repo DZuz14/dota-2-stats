@@ -2,7 +2,7 @@
 
 [View Demo](https://dzuz14.github.io/)
 
-This basic demo is a work in progress, but hopefully showcases my understanding of React, GraphQL, TypeScript, & JavaScript in general. You should be able to do the following from the index page:
+This basic demo is a work in progress(*Just started building it about a week ago*), but hopefully it showcases my understanding of React, GraphQL, TypeScript, & JavaScript in general. You should be able to do the following from the index page:
 
 - View a list of teams on the pro circuit
 - View a individual teams roster and recent matches
