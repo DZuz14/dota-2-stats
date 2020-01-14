@@ -6,12 +6,12 @@ import { graphql } from 'gatsby'
 import Layout from '../components/Layout'
 import Match from '../components/Match'
 
-import { MatchSummary } from '../types'
+import { Match as MatchInterface } from '../types'
 
 interface PageProps {
   data: {
     allMatchJson: {
-      edges: { node: MatchSummary }[]
+      edges: { node: MatchInterface }[]
     }
   }
 }
@@ -20,7 +20,7 @@ const Matches = ({ data: { allMatchJson } }: PageProps) => {
   return (
     <Layout>
       <Router>
-        <Match path="matches/:matchId" match={allMatchJson.edges} />
+        <Match path="matches/:matchId" match={allMatchJson.edges[0].node} />
       </Router>
     </Layout>
   )

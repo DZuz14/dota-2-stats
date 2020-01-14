@@ -7,7 +7,7 @@ import Player from '../components/Player'
 
 import { PlayerProfile } from '../types'
 
-interface Props {
+interface PageProps {
   data: {
     allPlayerJson: {
       edges: { node: { profile: PlayerProfile } }[]
@@ -15,7 +15,7 @@ interface Props {
   }
 }
 
-const Players = ({ data: { allPlayerJson } }: Props) => (
+const Players = ({ data: { allPlayerJson } }: PageProps) => (
   <Layout>
     <Router>
       <Player

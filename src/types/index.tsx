@@ -7,7 +7,7 @@ export interface Match {
     name: string
     logo_url: string
   }
-  players: PlayerStats
+  players: PlayerStats[]
 }
 
 export interface MatchSummary {

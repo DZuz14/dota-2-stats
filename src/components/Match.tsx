@@ -36,7 +36,11 @@ const Versus = styled.span`
   fontSize: '1.5rem'
 `
 
-const TeamStats = ({ players }: { players: PlayerStats[] }) => {
+interface TeamStatsProps {
+  players: PlayerStats[]
+}
+
+const TeamStats = ({ players }: TeamStatsProps) => {
   return (
     <TableLight>
       <thead>
@@ -58,7 +62,7 @@ const TeamStats = ({ players }: { players: PlayerStats[] }) => {
             last_hits,
             denies,
             hero_damage
-          }) => (
+          }: PlayerStats) => (
             <tr key={name}>
               <td>
                 <Link to={`/players/${account_id}`}>{name}</Link>
@@ -77,13 +81,11 @@ const TeamStats = ({ players }: { players: PlayerStats[] }) => {
   )
 }
 
-const Match = ({ match }: { match: { node: MatchInterface[] } }) => {
-  const [matchDetail] = match
+interface Props {
+  match: MatchInterface
+}
 
-  const {
-    node: { radiant_team, dire_team, players }
-  } = matchDetail
-
+const Match = ({ match: { radiant_team, dire_team, players } }: Props) => {
   const radiant = radiant_team
   const radiantPlayers = players.slice(0, 5)
 
