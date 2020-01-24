@@ -1,24 +1,12 @@
-# Dota 2 Pro Circuit Demo
-
-[View Demo](https://dzuz14.github.io/)
-
-This basic demo is a work in progress(*Just started building it about a week ago*), but hopefully it showcases my understanding of React, GraphQL, TypeScript, & JavaScript in general. You should be able to do the following from the index page:
+# Dota 2 Stats
 
 - View a list of teams on the pro circuit
 - View a individual teams roster and recent matches
 - View the details of an individual match
 - View an individual players profile
 
-I am using mock data from the [OpenDota API](https://docs.opendota.com/), instead of making live requests to the free API. Therefore, you should expect to see the same mock data once you have clicked into a team(*The teams players and match data will most likely not reflect the actual team you selected*). In the future I will hook up live requests and integrate it into Redux/Redux Saga.
+I am using mock data from the [OpenDota API](https://docs.opendota.com/), instead of making live requests to the free API. Therefore, you should expect to see the same mock data once you have clicked into a team(_The teams players and match data will most likely not reflect the actual team you selected_). In the future I will hook up live requests and integrate it into Redux/Redux Saga.
 
-## Tech
+## Demo
 
-- [Gatsby.js](https://www.gatsbyjs.org/)
-- React
-- GraphQL
-- TypeScript
-- [Emotion CSS in JS](https://emotion.sh/docs/introduction)
-
-## Design
-
-I know it's not the prettiest thing to look at, but design is not my specialty. I did my best to come up with a neat and organized layout that should be easy to navigate.
+[Dota 2 Pro Stats](https://dzuz14.github.io/dota-2-stats/)
