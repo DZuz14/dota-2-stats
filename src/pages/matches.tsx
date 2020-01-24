@@ -20,7 +20,10 @@ const Matches = ({ data: { allMatchJson } }: PageProps) => {
   return (
     <Layout>
       <Router>
-        <Match path="matches/:matchId" match={allMatchJson.edges[0].node} />
+        <Match
+          path="dota-2-stats/matches/:matchId"
+          match={allMatchJson.edges[0].node}
+        />
       </Router>
     </Layout>
   )

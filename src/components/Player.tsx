@@ -21,11 +21,11 @@ const Player = ({ profile: { name, profileurl, avatarfull } }: Props) => (
       <h1>{name}</h1>
 
       <a href={profileurl} target="_blank" rel="noopener noreferrer">
-        <img src="/static/steam-icon.png" alt={name} height="40" />
+        <img src="/dota-2-stats/static/steam-icon.png" alt={name} height="40" />
       </a>
     </div>
 
-    <Image src={avatarfull} alt={name} thumbnail />
+    <Image src="/dota-2-stats/static/profile.png" alt={name} thumbnail />
 
     <Bio>
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

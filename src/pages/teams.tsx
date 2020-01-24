@@ -28,7 +28,7 @@ const Teams = ({
   <Layout>
     <Router>
       <Team
-        path="teams/:teamId"
+        path="dota-2-stats/teams/:teamId"
         team={allTeamsJson.edges}
         players={allPlayersJson.edges}
         matches={allMatchesJson.edges}

@@ -19,7 +19,7 @@ const Players = ({ data: { allPlayerJson } }: PageProps) => (
   <Layout>
     <Router>
       <Player
-        path="players/:playerId"
+        path="dota-2-stats/players/:playerId"
         profile={allPlayerJson.edges[0].node.profile}
       />
     </Router>
